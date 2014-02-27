@@ -103,7 +103,8 @@
           this.options.title = metadata.title;
         }
         this.fire('metadata', {
-          metadata: metadata
+          metadata: metadata,
+          bounds: L.latLngBounds([[metadata.extent[0][1], metadata.extent[0][0]], [metadata.extent[1][1], metadata.extent[1][0]]])
         });
         this._checkIfReady();
       }, this));

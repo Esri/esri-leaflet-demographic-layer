@@ -1,6 +1,6 @@
 var request = require('request');
 
-module.exports = function(grunt) {
+module.exports = function (grunt) {
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
@@ -11,9 +11,9 @@ module.exports = function(grunt) {
 
     jshint: {
       options: {
-        jshintrc: true,
+        jshintrc: true
       },
-      all: ['layers/*.js', 'src/**/*.js', 'spec/*.js'],
+      all: ['layers/*.js', 'src/**/*.js', 'spec/*.js']
     },
 
     concat: {
@@ -26,13 +26,13 @@ module.exports = function(grunt) {
       },
       js: {
         src: [
-          'src/esri-leaflet-demographics.js',
+          'src/esri-leaflet-demographics.js'
         ],
         dest: 'dist/esri-leaflet-demographics-src.js'
       },
       css: {
         src: [
-          'src/esri-leaflet-legend.css',
+          'src/esri-leaflet-legend.css'
         ],
         dest: 'dist/esri-leaflet-legend-src.css'
       },
