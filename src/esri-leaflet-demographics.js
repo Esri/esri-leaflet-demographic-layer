@@ -92,6 +92,12 @@
     document.body.appendChild(script);
   }
 
+  function mercatorExtentToBounds(extent, map) {
+    var sw = map.unproject(L.point([extent.ymin, extent.xmin]));
+    var ne = map.unproject(L.point([extent.ymax, extent.xmax]));
+    return new L.LatLngBounds(sw, ne);
+  }
+
   // ensure the namespaces exist
   namespace('L.esri.Demographics');
 
@@ -102,7 +108,10 @@
         if (!this.options.title) {
           this.options.title = metadata.title;
         }
-        this.fire('metadata', { metadata: metadata });
+        this.fire('metadata', {
+          metadata: metadata,
+          bounds: mercatorExtentToBounds(metadata.extent, this._map)
+        });
         this._checkIfReady();
       }, this));
     },

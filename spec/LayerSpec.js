@@ -39,13 +39,13 @@ describe('L.esri.Demographics.Layer', function () {
   });
 
   describe('events', function () {
-    var map = createMap();
-    var layer = L.esri.Demographics.demographicLayer('UsaAverageHouseholdSize', {
-      token: token
-    });
 
     it('should fire a loading event with bounds', function () {
       var spy = jasmine.createSpy();
+      var map = createMap();
+      var layer = L.esri.Demographics.demographicLayer('UsaAverageHouseholdSize', {
+        token: token
+      });
 
       layer.on('loading', spy);
 
@@ -62,8 +62,14 @@ describe('L.esri.Demographics.Layer', function () {
 
     it('should fire a load event with bounds', function () {
       var spy = jasmine.createSpy();
+      var map = createMap();
+      var layer = L.esri.Demographics.demographicLayer('UsaAverageHouseholdSize', {
+        token: token
+      });
 
       layer.on('load', spy);
+
+      layer.addTo(map);
 
       waitsFor(function () {
         return spy.callCount;
@@ -71,6 +77,27 @@ describe('L.esri.Demographics.Layer', function () {
 
       runs(function () {
         expect(spy.callCount).toEqual(1);
+      });
+    });
+
+    it('should fire a metadata event with bounds', function () {
+      var spy = jasmine.createSpy();
+      var map = createMap();
+      var layer = L.esri.Demographics.demographicLayer('UsaAverageHouseholdSize', {
+        token: token
+      });
+
+      layer.on('metadata', spy);
+
+      layer.addTo(map);
+
+      waitsFor(function () {
+        return spy.callCount;
+      }, 'load event', 5000);
+
+      runs(function () {
+        expect(spy.mostRecentCall.args[0].bounds).toBeTruthy();
+        expect(spy.mostRecentCall.args[0].metadata).toBeTruthy();
       });
     });
   });
