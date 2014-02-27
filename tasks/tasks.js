@@ -47,7 +47,7 @@ module.exports = function (grunt) {
       if (!item.title.match('Mature Support')) {
         layers.push({
           country: country,
-          hash: country.replace(/\s/g, '-').replace(/\W+/g, ' ').toLowerCase(),
+          hash: country.replace(/ /g, '-').replace(/\W+/g, '').toLowerCase(),
           filename: country.replace(/ /g, '-').toLowerCase(),
           key: item.title.replace(/\W/g, ''),
           id: item.id
