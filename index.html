@@ -72,18 +72,22 @@
           attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
       }).addTo(map);
 
-      var income = new L.esri.Demographics.DemographicLayer(key, {
+      var layer = new L.esri.Demographics.DemographicLayer(key, {
         opacity: 0.65
       }).addTo(map);
 
       // the event authenticationrequired will fire when you need to provide a token.
-      income.on('authenticationrequired', function (e) {
+      layer.on('authenticationrequired', function (e) {
         // run our oauth function, when its done we will get a token
         oauth(function(token){
           // pass our new token to the retry method to retry the request(s) with the new authentication
           e.retry(token);
         });
       });
+
+      layer.on('metadata', function(e){
+        map.fitBounds(e.bounds);
+      })
 
       var legend = new L.esri.Demographics.Legend(key).addTo(map);
 
@@ -98,7 +102,7 @@
       var outline;
 
       map.on("click", function(e) {
-        income.query(e.latlng, function(response){
+        layer.query(e.latlng, function(response){
           if(outline){
             map.removeLayer(outline);
           }
