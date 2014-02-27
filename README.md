@@ -64,7 +64,7 @@ Method | Returns |  Description
 
 #### Example
 
-```js
+```javascript
 var layer = L.esri.Demographics.demographicLayer('USAAverageHouseholdSize', {
     token: token
 }).addTo(map);
@@ -96,7 +96,7 @@ Constructor | Description
 
 #### Example
 
-```
+```javascript
 var legend = new L.esri.Demographics.Legend("USAAverageHouseholdSize").addTo(map);
 ```
 
