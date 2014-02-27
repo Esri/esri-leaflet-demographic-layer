@@ -4,7 +4,7 @@ Esri Leaflet Demographic Layers is a Leaflet plugin that will allow you to rende
 
 **Currently Esri Leaflet Demographic Layers is in development and should be thought of as a beta or preview.**
 
-Despite sharing a name and a namespace with Esri Leaflet, Esri Leaflet Geocoder does not require Esri Leaflet. It is however tested with Esri Leaflet and will work just fine with or without it.
+Despite sharing a name and a namespace with Esri Leaflet, Esri Leaflet Demographic Layers does not require Esri Leaflet. It is however tested with Esri Leaflet and will work just fine with or without it.
 
 ## Demo
 
@@ -40,7 +40,7 @@ Constructor | Description
 
 Option | Type | Default | Description
 --- | --- | --- | ---
-`token` | `String` | `null` | If you pass a token in your options it will included in all requests to the service. See [handling authentication](#handling-authentication) for more information.
+`token` | `String` | `null` | If you pass a token in your options it will be included in all requests to the service. See [handling authentication](#handling-authentication) for more information.
 `opacity` | `Integer` | `0.5` | Opacity of the layer. Generally this should be between `0.25` and `0.75` for best results.
 `detectRetina` | `Boolean` | `false` | If `true` on retina devices higher quality images will be fetched from the server, however these images are also much larger so this must be enabled with care.
 `debounce` | `Integer` | `150` | Controls the delay between requesting new images when panning or zooming.
@@ -134,7 +134,7 @@ Make sure you load the layer file for the keys you want to make available for us
 
 Using theses demographic maps will use credits from your ArcGIS Online account. You can check the current cost of the demographic map service and learn more about credits [here](https://developers.arcgis.com/credits/)
 
-If you are using a [free development and testing](https://developers.arcgis.com/plans) account from [http://developers.arcgis.com](http://developers.arcgis.com). You can draw about 50,000 map views with the 50 credits per month you recive as part of that plan.
+If you are using a [free development and testing](https://developers.arcgis.com/plans) account from [http://developers.arcgis.com](http://developers.arcgis.com) you can draw 50,000 map views with the 50 credits per month you recive as part of that plan.
 
 Make sure you familiarize yourself with the [ArcGIS for Developers terms](https://developers.arcgis.com/en/terms/) and [FAQ](https://developers.arcgis.com/en/terms/faq/) before launching your application.
 
