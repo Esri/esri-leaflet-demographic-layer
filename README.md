@@ -44,7 +44,7 @@ Option | Type | Default | Description
 `opacity` | `Integer` | `0.5` | Opacity of the layer. Generally this should be between `0.25` and `0.75` for best results.
 `detectRetina` | `Boolean` | `false` | If `true` on retina devices higher quality images will be fetched from the server, however these images are also much larger so this must be enabled with care.
 `debounce` | `Integer` | `150` | Controls the delay between requesting new images when panning or zooming.
-`position` | `String` | `"front"` | can be set to `"front"` or `"back"` to control where the layer is placed in the overlay stack. 
+`position` | `String` | `"front"` | can be set to `"front"` or `"back"` to control where the layer is placed in the overlay stack.
 
 #### Events
 
@@ -59,7 +59,7 @@ Event | Data | Description
 
 Method | Returns |  Description
 --- | --- | ---
-`query(latlng, callback)` | `null` | Used to query detailed demographic info about an area. The first parameter is a [`L.LatLng`](http://leafletjs.com/reference.html#latlng) object, the second is a callback that will be passed GeoJSON is the query was successful or an error message.
+`query(latlng, callback)` | `null` | Used to query detailed demographic info about an area. The first parameter is a [`L.LatLng`](http://leafletjs.com/reference.html#latlng) object, the second is a callback that will be passed GeoJSON if the query was successful or an error message.
 
 
 #### Example
@@ -72,7 +72,7 @@ var layer = L.esri.Demographics.demographicLayer('USAAverageHouseholdSize', {
 map.on(click, function(e){
     layer.query(e.latlng, function(response){
         // response will be a GeoJSON Feature Collection
-    });    
+    });
 })
 ```
 
@@ -128,7 +128,7 @@ Make sure you load the layer file for the keys you want to make available for us
 <!-- Load US and Canadian layer keys -->
 <script src="usa.js"></script>
 <script src="canada.js"></script>
-``` 
+```
 
 ### Costs
 
@@ -144,20 +144,20 @@ Make sure you familiarize yourself with the [ArcGIS for Developers terms](https:
 
 Data | Value | Description
 --- | --- | ---
-`bounds` | [`LatLngBounds`](http://leafletjs.com/reference.html#latlngbounds) | The bounds that features are currently being loaded.
+`bounds` | [`LatLngBounds`](http://leafletjs.com/reference.html#latlngbounds) | The bounds that are currently being loaded.
 `metadata` | `Object` | The JSON metadata for the service. See below.
 
 #### Loading Event
 
 Data | Value | Description
 --- | --- | ---
-`bounds` | [`LatLngBounds`](http://leafletjs.com/reference.html#latlngbounds) | The bounds that features are currently being loaded.
+`bounds` | [`LatLngBounds`](http://leafletjs.com/reference.html#latlngbounds) | The bounds that are currently being loaded.
 
 #### Load Event
 
 Data | Value | Description
 --- | --- | ---
-`bounds` | [`LatLngBounds`](http://leafletjs.com/reference.html#latlngbounds) | The bounds that where loaded.
+`bounds` | [`LatLngBounds`](http://leafletjs.com/reference.html#latlngbounds) | The bounds that were loaded.
 
 #### Authentication Event
 
