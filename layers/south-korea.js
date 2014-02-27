@@ -1,6 +1,6 @@
 L.esri.Demographics._addKeys([
   {
-    'key': 'SouthKoreaPurchasingPowerPerCapita',
+    'key': 'SouthKoreaPurchasingPowerperCapita',
     'id': '049dfb650ad449f1bef5a0ddb9f7469e'
   },
   {

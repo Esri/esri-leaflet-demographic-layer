@@ -1,6 +1,6 @@
 L.esri.Demographics._addKeys([
   {
-    'key': 'NewZealandPurchasingPowerPerCapita',
+    'key': 'NewZealandPurchasingPowerperCapita',
     'id': 'f8090b9e464d4bab8be1c65a44105105'
   },
   {

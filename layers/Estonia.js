@@ -1,10 +1,10 @@
 L.esri.Demographics._addKeys([
   {
-    'key': 'EstoniaPurchasingPowerPerCapita',
+    'key': 'EstoniaPurchasingPowerperCapita',
     'id': '16e15d0f57ac407cb143c04cf5bdea64'
   },
   {
-    'key': 'EstoniaPurchasingPowerPerCapita',
+    'key': 'EstoniaPurchasingPowerperCapita',
     'id': '005e0cc6eb6c4e92ab1f227756c41b62'
   },
   {

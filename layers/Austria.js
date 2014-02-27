@@ -1,6 +1,6 @@
 L.esri.Demographics._addKeys([
   {
-    'key': 'AustriaPurchasingPowerPerCapita',
+    'key': 'AustriaPurchasingPowerperCapita',
     'id': '6a94cbfbdb8c40889890d98119408068'
   },
   {

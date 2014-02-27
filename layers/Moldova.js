@@ -1,6 +1,6 @@
 L.esri.Demographics._addKeys([
   {
-    'key': 'MoldovaPurchasingPowerPerCapita',
+    'key': 'MoldovaPurchasingPowerperCapita',
     'id': 'e495caf6d16e41f0b7b1063ec0b43685'
   },
   {

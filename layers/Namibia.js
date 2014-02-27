@@ -1,6 +1,6 @@
 L.esri.Demographics._addKeys([
   {
-    'key': 'NamibiaPurchasingPowerPerCapita',
+    'key': 'NamibiaPurchasingPowerperCapita',
     'id': 'a6cb3ae8e79b46eab2fc7b9d9ff705c9'
   },
   {

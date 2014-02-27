@@ -1,6 +1,6 @@
 L.esri.Demographics._addKeys([
   {
-    'key': 'MalawiPurchasingPowerPerCapita',
+    'key': 'MalawiPurchasingPowerperCapita',
     'id': 'e7e99e198e8546568d03fdbbc9675258'
   },
   {

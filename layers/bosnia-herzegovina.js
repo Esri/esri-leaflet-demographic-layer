@@ -1,6 +1,6 @@
 L.esri.Demographics._addKeys([
   {
-    'key': 'BosniaHerzegovinaPurchasingPowerPerCapita',
+    'key': 'BosniaHerzegovinaPurchasingPowerperCapita',
     'id': '956788cd624d4acd8e3a09a61f6a96d7'
   },
   {

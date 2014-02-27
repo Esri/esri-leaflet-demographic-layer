@@ -1,6 +1,6 @@
 L.esri.Demographics._addKeys([
   {
-    'key': 'BahrainPurchasingPowerPerCapita',
+    'key': 'BahrainPurchasingPowerperCapita',
     'id': 'ce8a782c5bfa4f79bb392cfdf9e453f8'
   },
   {

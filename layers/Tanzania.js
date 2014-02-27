@@ -1,6 +1,6 @@
 L.esri.Demographics._addKeys([
   {
-    'key': 'TanzaniaPurchasingPowerPerCapita',
+    'key': 'TanzaniaPurchasingPowerperCapita',
     'id': 'c4b7d11ed0174f24b914cd3707212af5'
   },
   {

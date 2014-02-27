@@ -1,6 +1,6 @@
 L.esri.Demographics._addKeys([
   {
-    'key': 'GhanaPurchasingPowerPerCapita',
+    'key': 'GhanaPurchasingPowerperCapita',
     'id': '18495d36985a411e8fdc7b763dccad1e'
   },
   {

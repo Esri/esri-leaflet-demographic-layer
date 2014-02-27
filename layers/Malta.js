@@ -1,6 +1,6 @@
 L.esri.Demographics._addKeys([
   {
-    'key': 'MaltaPurchasingPowerPerCapita',
+    'key': 'MaltaPurchasingPowerperCapita',
     'id': '663f623e0265434bb8009437afacef95'
   },
   {

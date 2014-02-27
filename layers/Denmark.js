@@ -1,6 +1,6 @@
 L.esri.Demographics._addKeys([
   {
-    'key': 'DenmarkPurchasingPowerPerCapita',
+    'key': 'DenmarkPurchasingPowerperCapita',
     'id': 'e36ddc9ad6e4428f881f53e3a811b271'
   },
   {

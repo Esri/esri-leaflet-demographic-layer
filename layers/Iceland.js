@@ -1,6 +1,6 @@
 L.esri.Demographics._addKeys([
   {
-    'key': 'IcelandPurchasingPowerPerCapita',
+    'key': 'IcelandPurchasingPowerperCapita',
     'id': '9586277888344da6a8d06b46efe58fb3'
   },
   {

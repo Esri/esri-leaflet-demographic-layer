@@ -1,6 +1,6 @@
 L.esri.Demographics._addKeys([
   {
-    'key': 'MauritiusPurchasingPowerPerCapita',
+    'key': 'MauritiusPurchasingPowerperCapita',
     'id': '214ed20b8acf4353b470b4dd708e5e1e'
   },
   {

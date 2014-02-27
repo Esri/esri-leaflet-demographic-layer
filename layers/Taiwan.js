@@ -1,6 +1,6 @@
 L.esri.Demographics._addKeys([
   {
-    'key': 'TaiwanPurchasingPowerPerCapita',
+    'key': 'TaiwanPurchasingPowerperCapita',
     'id': 'f773736dc0214d009b34e36b99511361'
   },
   {

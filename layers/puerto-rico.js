@@ -1,6 +1,6 @@
 L.esri.Demographics._addKeys([
   {
-    'key': 'PuertoRicoPurchasingPowerPerCapita',
+    'key': 'PuertoRicoPurchasingPowerperCapita',
     'id': '671fc4557fb84cf9b278804e23d08f54'
   },
   {

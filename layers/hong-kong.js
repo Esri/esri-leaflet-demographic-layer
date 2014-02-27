@@ -1,6 +1,6 @@
 L.esri.Demographics._addKeys([
   {
-    'key': 'HongKongPurchasingPowerPerCapita',
+    'key': 'HongKongPurchasingPowerperCapita',
     'id': '262e699bbcf24f4cb11d9aa4cf8680eb'
   },
   {

@@ -1,6 +1,6 @@
 L.esri.Demographics._addKeys([
   {
-    'key': 'UgandaPurchasingPowerPerCapita',
+    'key': 'UgandaPurchasingpowerperCapita',
     'id': '463e81c9bb594ee5871c6dd39bd2a6df'
   },
   {

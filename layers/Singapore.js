@@ -1,6 +1,6 @@
 L.esri.Demographics._addKeys([
   {
-    'key': 'SingaporePurchasingPowerPerCapita',
+    'key': 'SingaporePurchasingPowerperCapita',
     'id': 'e8b3361bda4f4c10afab92bcb3220d95'
   },
   {

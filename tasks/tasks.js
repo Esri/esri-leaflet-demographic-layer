@@ -1,11 +1,13 @@
 var request = require('request');
 var fs = require('fs');
 var async = require('async');
+var _ = require('lodash');
 
 module.exports = function (grunt) {
 
   var countryNames = /(Germany)|(Zambia)|(Great Britain)|(Norway)|(Spain)|(Netherlands)|(Ireland)|(Austria)|(Belgium)|(Greece)|(Portugal)|(Cote D'Ivoire)|(Denmark)|(Luxembourg)|(Liechtenstein)|(Lithuania)|(Latvia)|(Indonesia)|(Saudi Arabia)|(Colombia)|(Peru)|(Swaziland)|(Montenegro)|(Ghana)|(Cyprus)|(USA)|(New Zealand)|(South Korea)|(Venezuela)|(Vietnam)|(Uzbekistan)|(Uruguay)|(Tunisia)|(United Arab Emirates)|(Trinidad and Tobago)|(Syria)|(Sudan)|(Sri Lanka)|(South Africa)|(Philippines)|(Paraguay)|(Panama)|(Oman)|(Nicaragua)|(New Caledonia)|(Morocco)|(Mongolia)|(Monaco)|(Martinique)|(Macao)|(Lesotho)|(Lebanon)|(Kyrgyzstan)|(Kuwait)|(Jordan)|(Jamaica)|(Honduras)|(Guatemala)|(Guadalupe)|(Georgia)|(Estonia)|(El Salvador)|(Egypt)|(Costa Rica)|(Chile)|(Canada)|(Brazil)|(Botswana)|(Bangladesh)|(Bolivia)|(Bahamas)|(Azerbaijan)|(Aruba)|(Armenia)|(Argentina)|(Andorra)|(Algeria)|(Malaysia)|(Sweden)|(Switzerland)|(India)|(France)|(Russia)|(Czech Republic)|(Mexico)|(Italy)|(Finland)|(The Former Yugoslav Republic of Macedonia)|(Taiwan)|(Thailand)|(Serbia)|(Croatia)|(Poland)|(Bulgaria)|(Singapore)|(Israel)|(Malawi)|(Kazakhstan)|(Moldova)|(China)|(Turkey)|(Kenya)|(Bahrain)|(Nigeria)|(Tanzania)|(Japan)|(Kosovo)|(Australia)|(Slovenia)|(Namibia)|(Iceland)|(Bosnia Herzegovina)|(Mozambique)|(Romania)|(Puerto Rico)|(Hungary)|(Malta)|(Albania)|(Belarus)|(Ukraine)|(Cyprus)|(Slovakia)|(Uganda)|(Reunion)|(Hong Kong)|(Mauritius)/;
   var query = 'group:455c272c9b004bb99984df4e2f4d2eb1 -type:"web mapping application" -type:"Geodata Service" (type: "Feature Collection" OR type:"Layer" OR type: "Explorer Layer" OR type: "Tile Package" OR type:"Layer Package" OR type:"Feature Service" OR type:"Map Service" OR type:"Image Service" OR type:"WMS" OR type:"KML" OR typekeywords:"OGC" OR typekeywords:"Geodata Service" OR type:"Globe Service" OR type:"CSV" OR type: "Shapefile" OR type: "Service Definition" OR type: "File Geodatabase") -type:"Layer" -type: "Map Document" -type:"Map Package" -type:"ArcPad Package" -type:"Explorer Map" -type:"Globe Document" -type:"Scene Document" -type:"Published Map" -type:"Map Template" -type:"Windows Mobile Package" -type:"Layer Package" -type:"Explorer Layer" -type:"Geoprocessing Package" -type:"Application Template" -type:"Code Sample" -type:"Geoprocessing Package" -type:"Geoprocessing Sample" -type:"Locator Package" -type:"Workflow Manager Package" -type:"Windows Mobile Package" -type:"Explorer Add In" -type:"Desktop Add In" -type:"File Geodatabase" -type:"Feature Collection Template" -type:"Code Attachment" -type:"Featured Items" -type:"Symbol Set" -type:"Color Set" -type:"Windows Viewer Add In" -type:"Windows Viewer Configuration"';
+  var template = _.template(fs.readFileSync('layers/_template.md'));
 
   function toTitleCase(str) {
     return str.replace(/\w\S*/g, function (txt) {
@@ -37,50 +39,58 @@ module.exports = function (grunt) {
   }
 
   function processResults(items) {
-    var countriesMap = {};
-    var countriesArray = [];
+    var layers = [];
+
     for (var i = items.length - 1; i >= 0; i--) {
       var item = items[i];
-      var countryName = toTitleCase(item.title.match(countryNames)[0]).replace(/\W/g, '');
+      var country = item.title.match(countryNames)[0];
       if (!item.title.match('Mature Support')) {
-        if (!countriesMap[countryName]) {
-          countriesMap[countryName] = [];
-        }
-        countriesMap[countryName].push({
-          key: toTitleCase(item.title).replace(/\W/g, ''),
+        layers.push({
+          country: country,
+          hash: country.replace(/ /g, '-').replace(/\W+/g, ' ').toLowerCase(),
+          filename: country.replace(/ /g, '-').toLowerCase(),
+          key: item.title.replace(/\W/g, ''),
           id: item.id
         });
       }
     }
 
-    for (var key in countriesMap) {
-      if (countriesMap.hasOwnProperty(key)) {
-        countriesArray.push({
-          layers: countriesMap[key],
-          name: key
-        });
-      }
-    }
-    return countriesArray;
-  }
-
-  function writeFile(country, callback) {
-    var filename = 'layers/' + country.name + '.js';
-    var content = 'L.esri.Demographics._addKeys(' + JSON.stringify(country.layers, undefined, 2).replace(/\"/g, '\'') + ');';
-
-    fs.writeFile(filename, content, function (error, result) {
-      if (error) {
-        grunt.log.error('Error creating ' + filename + ' ' + error);
-      } else {
-        grunt.log.ok('Created ' + filename + ' with ' + country.layers.length + ' layers');
-      }
-      callback(error, result);
-    });
+    return _.groupBy(layers, 'country');
   }
 
   function writeFiles(items, callback) {
-    var countries  = processResults(items);
-    async.each(countries, writeFile, callback);
+    var countries = processResults(items);
+
+    async.forEach(Object.keys(countries), function (key, cb) {
+      var filename = 'layers/' + countries[key][0].filename + '.js';
+
+      var layers = _.collect(countries[key], function (layer) {
+        return {
+          key: layer.key,
+          id: layer.id
+        };
+      });
+
+      var content = 'L.esri.Demographics._addKeys(' + JSON.stringify(layers, undefined, 2).replace(/\"/g, '\'') + ');';
+
+      fs.writeFile(filename, content, function (error, result) {
+        if (error) {
+          grunt.log.error('Error creating ' + filename + ' ' + error);
+        } else {
+          grunt.log.ok('Created ' + filename + ' with ' + layers.length + ' layers');
+        }
+        cb(error, result);
+      });
+    }, function () {
+      fs.writeFile('layers/README.md', template({countries: countries}), function (error) {
+        if (error) {
+          grunt.log.error('Error updating layer README.md');
+        } else {
+          grunt.log.ok('Updated layer README.md');
+        }
+        callback();
+      });
+    });
   }
 
   grunt.registerTask('buildLayerFiles', 'Query available demographic layers from ArcGIS Online and build layer files', function () {

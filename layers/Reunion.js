@@ -1,6 +1,6 @@
 L.esri.Demographics._addKeys([
   {
-    'key': 'ReunionPurchasingPowerPerCapita',
+    'key': 'ReunionPurchasingPowerperCapita',
     'id': '448ad9e018a6409fb79bafa57fa4cb08'
   },
   {

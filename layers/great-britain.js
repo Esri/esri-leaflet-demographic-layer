@@ -1,6 +1,6 @@
 L.esri.Demographics._addKeys([
   {
-    'key': 'GreatBritainPurchasingPowerPerCapita',
+    'key': 'GreatBritainPurchasingPowerperCapita',
     'id': '0eff30d5c16542fda6bbefc7dce1e7a5'
   },
   {

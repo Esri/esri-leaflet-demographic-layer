@@ -1,6 +1,6 @@
 L.esri.Demographics._addKeys([
   {
-    'key': 'SaudiArabiaPurchasingPowerPerCapita',
+    'key': 'SaudiArabiaPurchasingPowerperCapita',
     'id': 'adecf50df1ba4deba350be506513abf8'
   },
   {

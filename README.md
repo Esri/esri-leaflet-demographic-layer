@@ -8,11 +8,15 @@
 
 @TODO
 
-![Demographic Layer](https://raw.github.com/Esri/esri-leaflet-demographic-layer/master/preview.png)
+![Demographic Layer](https://raw.github.com/Esri/esri-leaflet-demographic-layer/master/preview.jpg)
 
 ## Documentation
 
-@TODO
+### L.esri.Demographics.DemographicLayer
+
+### L.esri.Demographics.Legend
+
+### Available Layers
 
 ## Development Instructions
 

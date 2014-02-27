@@ -4,7 +4,7 @@ L.esri.Demographics._addKeys([
     'id': '53a1c8856b3d46278d956b693e7b4a91'
   },
   {
-    'key': 'UkrainePurchasingPowerPerCapita',
+    'key': 'UkrainePurchasingPowerperCapita',
     'id': '3de9595dcb7445389a8ca0f7bf0011eb'
   }
 ]);

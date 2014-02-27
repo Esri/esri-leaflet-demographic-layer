@@ -1,6 +1,6 @@
 L.esri.Demographics._addKeys([
   {
-    'key': 'BrazilPurchasingPowerPerCapita',
+    'key': 'BrazilPurchasingPowerperCapita',
     'id': 'a3448a63b2b946f2a32f308cd18153f1'
   },
   {
@@ -8,7 +8,7 @@ L.esri.Demographics._addKeys([
     'id': 'fec8d3b9070b44c0b74860d84220c430'
   },
   {
-    'key': 'BrazilPurchasingPowerPerCapita',
+    'key': 'BrazilPurchasingPowerperCapita',
     'id': 'f08e1081b5074752ba63429f54bb75cb'
   },
   {
