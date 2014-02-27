@@ -126,6 +126,6 @@ module.exports = function (grunt) {
 
   grunt.loadTasks('tasks');
 
-  grunt.registerTask('build', ['default', 'buildLayerFiles', 'concat', 'uglify', 'cssmin']);
+  grunt.registerTask('build', ['buildLayerFiles', 'default', 'concat', 'uglify', 'cssmin']);
   grunt.registerTask('default', ['jshint', 'test']);
 };
