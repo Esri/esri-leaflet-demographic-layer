@@ -27,7 +27,7 @@ describe('L.esri.Demographics.Legend', function () {
 
     var spy = jasmine.createSpy();
 
-    var legend = L.esri.Demographics.legend('UsaAverageHouseholdSize', {
+    var legend = L.esri.Demographics.legend('USAAverageHouseholdSize', {
       token: token
     }).addTo(map);
 
@@ -48,7 +48,7 @@ describe('L.esri.Demographics.Legend', function () {
 
     var spy = jasmine.createSpy();
 
-    var legend = L.esri.Demographics.legend('UsaAverageHouseholdSize').addTo(map);
+    var legend = L.esri.Demographics.legend('USAAverageHouseholdSize').addTo(map);
 
     legend.on('authenticationrequired', function (e) {
       e.retry(token);
@@ -71,7 +71,7 @@ describe('L.esri.Demographics.Legend', function () {
 
     var spy = jasmine.createSpy();
 
-    var legend = L.esri.Demographics.legend('UsaAverageHouseholdSize', {
+    var legend = L.esri.Demographics.legend('USAAverageHouseholdSize', {
       token: token
     }).addTo(map);
 

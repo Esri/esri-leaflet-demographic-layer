@@ -25,7 +25,7 @@ describe('L.esri.Demographics.Layer', function () {
   describe('intialization', function () {
     it('should successfully initalize with a key', function () {
       expect(function () {
-        L.esri.Demographics.demographicLayer('UsaAverageHouseholdSize', {
+        L.esri.Demographics.demographicLayer('USAAverageHouseholdSize', {
           token: token
         });
       }).not.toThrow();
@@ -43,7 +43,7 @@ describe('L.esri.Demographics.Layer', function () {
     it('should fire a loading event with bounds', function () {
       var spy = jasmine.createSpy();
       var map = createMap();
-      var layer = L.esri.Demographics.demographicLayer('UsaAverageHouseholdSize', {
+      var layer = L.esri.Demographics.demographicLayer('USAAverageHouseholdSize', {
         token: token
       });
 
@@ -63,7 +63,7 @@ describe('L.esri.Demographics.Layer', function () {
     it('should fire a load event with bounds', function () {
       var spy = jasmine.createSpy();
       var map = createMap();
-      var layer = L.esri.Demographics.demographicLayer('UsaAverageHouseholdSize', {
+      var layer = L.esri.Demographics.demographicLayer('USAAverageHouseholdSize', {
         token: token
       });
 
@@ -80,23 +80,22 @@ describe('L.esri.Demographics.Layer', function () {
       });
     });
 
-    it('should fire a metadata event with bounds', function () {
+    it('should fire a metadata event', function () {
       var spy = jasmine.createSpy();
       var map = createMap();
-      var layer = L.esri.Demographics.demographicLayer('UsaAverageHouseholdSize', {
+      var layer = L.esri.Demographics.demographicLayer('USAAverageHouseholdSize', {
         token: token
       });
 
-      layer.on('metadata', spy);
-
       layer.addTo(map);
+
+      layer.on('metadata', spy);
 
       waitsFor(function () {
         return spy.callCount;
       }, 'load event', 5000);
 
       runs(function () {
-        expect(spy.mostRecentCall.args[0].bounds).toBeTruthy();
         expect(spy.mostRecentCall.args[0].metadata).toBeTruthy();
       });
     });
@@ -106,7 +105,7 @@ describe('L.esri.Demographics.Layer', function () {
     it('should fire an authenticationrequired event and reauthenticate', function () {
       var map = createMap();
 
-      var layer = L.esri.Demographics.demographicLayer('UsaAverageHouseholdSize').addTo(map);
+      var layer = L.esri.Demographics.demographicLayer('USAAverageHouseholdSize').addTo(map);
 
       var spy = jasmine.createSpy();
 
@@ -131,7 +130,7 @@ describe('L.esri.Demographics.Layer', function () {
     it('should mirror the current bounds of the map', function () {
       var map = createMap();
 
-      var layer = L.esri.Demographics.demographicLayer('UsaAverageHouseholdSize', {
+      var layer = L.esri.Demographics.demographicLayer('USAAverageHouseholdSize', {
         token: token
       }).addTo(map);
 
@@ -156,7 +155,7 @@ describe('L.esri.Demographics.Layer', function () {
       var loadSpy = jasmine.createSpy();
       var imageSpy = jasmine.createSpy();
 
-      var layer = L.esri.Demographics.demographicLayer('UsaAverageHouseholdSize', {
+      var layer = L.esri.Demographics.demographicLayer('USAAverageHouseholdSize', {
         token: token
       }).addTo(map);
 
@@ -184,7 +183,7 @@ describe('L.esri.Demographics.Layer', function () {
 
       var spy = jasmine.createSpy();
 
-      var layer = L.esri.Demographics.demographicLayer('UsaAverageHouseholdSize', {
+      var layer = L.esri.Demographics.demographicLayer('USAAverageHouseholdSize', {
         token: token
       }).addTo(map);
 
@@ -205,7 +204,7 @@ describe('L.esri.Demographics.Layer', function () {
 
       var spy = jasmine.createSpy();
 
-      var layer = L.esri.Demographics.demographicLayer('UsaAverageHouseholdSize').addTo(map);
+      var layer = L.esri.Demographics.demographicLayer('USAAverageHouseholdSize').addTo(map);
 
       layer.on('authenticationrequired', function (e) {
         e.retry(token);

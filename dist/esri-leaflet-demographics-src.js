@@ -105,7 +105,9 @@
         if (!this.options.title) {
           this.options.title = metadata.title;
         }
-        this.fire('metadata', { metadata: metadata });
+        this.fire('metadata', {
+          metadata: metadata
+        });
         this._checkIfReady();
       }, this));
     },
@@ -341,6 +343,9 @@
           this._runQuery(latlng, callback);
         }, this));
       }
+    },
+    getAttribution: function () {
+      return 'demographic data from <a href="http://www.arcgis.com/features/maps/index.html">Esri</a>';
     },
     _runQuery: function (latlng, callback) {
       //@ TODO refactor

@@ -1,7 +1,7 @@
 // Karma configuration
 // Generated on Sun Feb 09 2014 17:52:47 GMT-0800 (PST)
 
-module.exports = function(config) {
+module.exports = function (config) {
   config.set({
 
     // base path, that will be used to resolve files and exclude
@@ -17,7 +17,7 @@ module.exports = function(config) {
       'http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.css',
       'http://cdn.leafletjs.com/leaflet-0.7.2/leaflet-src.js',
       'src/*',
-      'layers/Usa.js',
+      'layers/usa.js',
       'spec/*Spec.js'
     ],
 
