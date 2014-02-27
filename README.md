@@ -167,7 +167,9 @@ Data | Value | Description
 
 ## Browser Compatibility
 
+This will work on modern browsers that support [CORS](http://caniuse.com/#search=cors). This means that this **will not** work on IE 8 or 9.
 
+The demo will also not work on mobile devices because it uses popups. In a production application more robust OAuth handling should be used.
 
 ## Development Instructions
 

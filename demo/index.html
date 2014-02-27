@@ -22,6 +22,35 @@
         height: 100%;
         padding: 0;
         margin: 0;
+        font-family: sans-serif;
+      }
+
+      .box {
+        width: 250px;
+        position: absolute;
+        top: 10px;
+        margin-left: -125px;
+        background: white;
+        box-shadow: 0 1px 5px rgba(0,0,0,0.65);
+        border-radius: 4px;
+        z-index: 1000;
+        left: 50%;
+        padding: 1em;
+        text-align: center;
+      }
+
+      .button {
+        display: block;
+        border-radius: 4px;
+        font-size: 16px;
+        padding: 1em;
+        background: #0078c5;
+        color: white;
+        text-decoration: none;
+      }
+
+      .button:hover {
+        background: #003b61
       }
     </style>
 
@@ -31,29 +60,23 @@
 
     <a href="https://github.com/Esri/esri-leaflet-demographic-layer"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://github-camo.global.ssl.fastly.net/e7bbb0521b397edbd5fe43e7f760759336b5e05f/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677265656e5f3030373230302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png"></a>
 
+    <div class="box">
+      <p>Sign in to start the demo.</p>
+      <a href="#" id="log-in-link" class="button" onclick="startOauth();">Sign Into ArcGIS Online</a>
+    </div>
+
     <script>
       var clientID = 'FxeCTSwkrA9yqVGS';
-      var accessToken;
-      var callbacks = [];
       var key = (window.location.hash) ? window.location.hash.replace('#', ''): 'USAHealthCareSpending';
 
       // this function will open a popup window and start the oauth process
-      function oauth(callback) {
-        if(accessToken){
-          callback(accessToken);
-        } else {
-          callbacks.push(callback);
-          window.open("https://www.arcgis.com/sharing/oauth2/authorize?client_id="+clientID+"&response_type=token&expiration=20160&redirect_uri=http%3A%2F%2Fesri.github.io%2Fesri-leaflet-demographic-layer%2Fcallback.html", "oauth-window", "height=400,width=600,menubar=no,location=yes,resizable=yes,scrollbars=yes,status=yes");
-        }
+      function startOauth() {
+        window.open("https://www.arcgis.com/sharing/oauth2/authorize?client_id="+clientID+"&response_type=token&expiration=20160&redirect_uri=http%3A%2F%2Fesri.github.io%2Fesri-leaflet-demographic-layer%2Fcallback.html", "oauth-window", "height=400,width=600,menubar=no,location=yes,resizable=yes,scrollbars=yes,status=yes");
       }
 
       // this function will be called when the oauth process is complete
       window.oauthCallback = function(token) {
-        accessToken = token;
-        var callback;
-        while(callback = callbacks.pop()){
-          callback(token);
-        }
+        startDemo(token);
       }
 
       // a function for looping over all properties and rendering a popup at a given latlng
@@ -80,60 +103,48 @@
           attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
       }).addTo(map);
 
-      // create a new demographic layer
-      var layer = new L.esri.Demographics.DemographicLayer(key, {
-        opacity: 0.65
-      }).addTo(map);
+      function startDemo(token){
+        // create a new demographic layer
+        var layer = new L.esri.Demographics.DemographicLayer(key, {
+          opacity: 0.65,
+          token: token
+        }).addTo(map);
 
-      // the authenticationrequired event will fire if and when you need to provide a new token
-      layer.on('authenticationrequired', function (e) {
-        // run our oauth function, when its done we will get a token
-        oauth(function(token){
-          // pass our new token to the retry method to retry the request(s) with the new authentication
-          e.retry(token);
-        });
-      });
+        layer.on('metadata', function(e){
+          map.fitBounds(e.bounds);
+        })
 
-      layer.on('metadata', function(e){
-        map.fitBounds(e.bounds);
-      })
+        // create a matching legend for our layer
+        var legend = new L.esri.Demographics.Legend(key, {
+          token: token
+        }).addTo(map);
 
-      // create a matching legend for our layer
-      var legend = new L.esri.Demographics.Legend(key).addTo(map);
+        var outline;
 
-      legend.on('authenticationrequired', function (e) {
-        // run our oauth function, when its done we will get a token
-        oauth(function(token){
-          // pass our new token to the retry method to retry the request(s) with the new authentication
-          e.retry(token);
-        });
-      });
+        // when the map is clicked query more demographic info about and the layer nad display it in a popup
+        map.on("click", function(e) {
+          layer.query(e.latlng, function(response){
+            if(outline){
+              map.removeLayer(outline);
+            }
 
-      var outline;
-
-      // when the map is clicked query more demographic info about and the layer nad display it in a popup
-      map.on("click", function(e) {
-        layer.query(e.latlng, function(response){
-          if(outline){
-            map.removeLayer(outline);
-          }
-
-          // if ther was no error
-          if(!response.error){
-            outline = new L.GeoJSON(response.features[0], {
-              style: function(feature){
-                return {
-                  color: "#fff",
-                  weight:  3,
-                  opacity: 0.75
+            // if ther was no error
+            if(!response.error){
+              outline = new L.GeoJSON(response.features[0], {
+                style: function(feature){
+                  return {
+                    color: "#fff",
+                    weight:  3,
+                    opacity: 0.75
+                  }
                 }
-              }
-            }).addTo(map);
+              }).addTo(map);
 
-            createPopup(e.latlng, response.features[0].properties).openOn(map);
-          }
+              createPopup(e.latlng, response.features[0].properties).openOn(map);
+            }
+          });
         });
-      });
+      }
     </script>
   </body>
 </html>
