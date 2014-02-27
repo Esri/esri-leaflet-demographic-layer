@@ -165,6 +165,10 @@ Data | Value | Description
 --- | --- | ---
 `retry` | `Function` | Pass an access token to this method to retry the failed request and update the `token` parameter for the layer. See [handling authentication](#handling-authentication) for more information.
 
+## Browser Compatibility
+
+
+
 ## Development Instructions
 
 1. [Fork and clone](https://help.github.com/articles/fork-a-repo)
