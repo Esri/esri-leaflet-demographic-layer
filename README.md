@@ -134,7 +134,7 @@ Make sure you load the layer file for the keys you want to make available for us
 
 Using theses demographic maps will use credits from your ArcGIS Online account. You can check the current cost of the demographic map service and learn more about credits [here](https://developers.arcgis.com/credits/)
 
-If you are using a [free development and testing](https://developers.arcgis.com/plans) account from (http://developers.arcgis.com)[http://developers.arcgis.com]. You can draw about 50,000 map views with the 50 credits per month you recive as part of that plan.
+If you are using a [free development and testing](https://developers.arcgis.com/plans) account from [http://developers.arcgis.com](http://developers.arcgis.com). You can draw about 50,000 map views with the 50 credits per month you recive as part of that plan.
 
 Make sure you familiarize yourself with the [ArcGIS for Developers terms](https://developers.arcgis.com/en/terms/) and [FAQ](https://developers.arcgis.com/en/terms/faq/) before launching your application.
 
