@@ -1,4 +1,4 @@
-/*! esri-leaflet-demographics - v0.0.1-beta.1 - 2014-02-26
+/*! esri-leaflet-demographics - v0.0.1-beta.1 - 2014-02-27
 *   Copyright (c) 2014 Environmental Systems Research Institute, Inc.
 *   Apache License*/
 (function (L) {
@@ -106,7 +106,8 @@
           this.options.title = metadata.title;
         }
         this.fire('metadata', {
-          metadata: metadata
+          metadata: metadata,
+          bounds: L.latLngBounds([[metadata.extent[0][1], metadata.extent[0][0]], [metadata.extent[1][1], metadata.extent[1][0]]])
         });
         this._checkIfReady();
       }, this));
