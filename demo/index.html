@@ -25,6 +25,10 @@
         font-family: sans-serif;
       }
 
+      body.authed .box{
+        display: none;
+      }
+
       .box {
         width: 250px;
         position: absolute;
@@ -52,6 +56,24 @@
       .button:hover {
         background: #003b61
       }
+
+      /* override some leaflet popup styles to accomidate our content */
+      .leaflet-popup-content-wrapper {
+        overflow: hidden;
+        border-radius: 4px;
+      }
+
+      .leaflet-popup-content {
+        padding: 13px 19px;
+        margin: 0;
+        max-height: 250px;
+        overflow-x: hidden;
+        overflow-y: scroll;
+      }
+
+      .leaflet-container a.leaflet-popup-close-button {
+        padding: 4px 18px 0 0;
+      }
     </style>
 
   </head>
@@ -78,6 +100,7 @@
 
       // this function will be called when the oauth process is complete
       window.oauthCallback = function(token) {
+        document.body.class += "authed";
         startDemo(token);
       }
 
