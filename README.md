@@ -8,7 +8,7 @@ Despite sharing a name and a namespace with Esri Leaflet, Esri Leaflet Geocoder 
 
 ## Demo
 
-[View the demo](http://esri.github.io/esri-leaflet-demographic-layer/). 
+[View the demo →](http://esri.github.io/esri-leaflet-demographic-layer/)
 
 **An ArcGIS Online account is required!** You can sign up for a free developer account on [ArcGIS for Developers](https://developers.arcgis.com/en/sign-up/).
 
