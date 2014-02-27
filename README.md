@@ -12,7 +12,7 @@ Despite sharing a name and a namespace with Esri Leaflet, Esri Leaflet Geocoder 
 
 **An ArcGIS Online account is required!** You can sign up for a free developer account on [ArcGIS for Developers](https://developers.arcgis.com/en/sign-up/).
 
-![Demographic Layer](https://raw.github.com/Esri/esri-leaflet-demographic-layer/master/preview.jpg)
+![Demographic Layer](preview.jpg)
 
 ## Documentation
 
@@ -194,7 +194,7 @@ Find a bug or want to request a new feature?  Please let us know by submitting a
 Esri welcomes contributions from anyone and everyone. Please see our [guidelines for contributing](https://github.com/esri/contributing).
 
 ## Licensing
-Copyright 2013 Esri
+Copyright 2014 Esri
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
