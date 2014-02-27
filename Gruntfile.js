@@ -56,7 +56,7 @@ module.exports = function(grunt) {
       }
     },
 
-     cssmin: {
+    cssmin: {
       main: {
         options: {
           wrap: false,
@@ -80,11 +80,19 @@ module.exports = function(grunt) {
         configFile: 'karma.conf.js',
         singleRun: false
       }
+    },
+
+    'gh-pages': {
+      options: {
+        base: 'demo',
+        repo: 'git@github.com:Esri/esri-leaflet-demographic-layer.git'
+      },
+      src: ['**']
     }
   });
 
-  grunt.registerTask('test', function(){
-    var task = grunt.option('watch')? 'karma:watch':'karma:unit';
+  grunt.registerTask('test', function () {
+    var task = grunt.option('watch') ? 'karma:watch':'karma:unit';
     var done = this.async();
     request({
       url: 'https://www.arcgis.com/sharing/oauth2/token',
@@ -92,17 +100,17 @@ module.exports = function(grunt) {
       method: 'POST',
       form: {
         client_id: grunt.config('authentication.clientId'),
-        client_secret:grunt.config('authentication.clientSecret'),
+        client_secret: grunt.config('authentication.clientSecret'),
         grant_type: 'client_credentials'
       }
-    }, function(err, body, response){
+    }, function (err, body, response) {
       grunt.util.spawn({
         grunt: true,
-        args: [task, '--access_token='+response.access_token],
+        args: [task, '--access_token=' + response.access_token],
         opts: {
           stdio: 'inherit'
         }
-      }, function(err, res, code) {
+      }, function () {
         done();
       });
 
@@ -114,6 +122,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-gh-pages');
 
   grunt.loadTasks('tasks');
 

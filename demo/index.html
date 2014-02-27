@@ -7,9 +7,9 @@
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.css" />
     <script src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet-src.js"></script>
 
-    <link rel="stylesheet" href="/src/esri-leaflet-legend.css" />
-    <script src="src/esri-leaflet-demographics.js"></script>
-    <script src="layers/USA.js"></script>
+    <link rel="stylesheet" href="esri-leaflet-legend.css" />
+    <script src="esri-leaflet-demographics.js"></script>
+    <script src="usa.js"></script>
 
     <!-- Make the map fill the entire page -->
     <style>
@@ -35,7 +35,7 @@
           callback(accessToken);
         } else {
           callbacks.push(callback);
-          window.open("https://www.arcgis.com/sharing/oauth2/authorize?client_id="+clientID+"&response_type=token&expiration=20160&redirect_uri=http%3A%2F%2Fesri.github.io%2Fesri-leaflet%2Foauth%2Fcallback.html", "oauth-window", "height=400,width=600,menubar=no,location=yes,resizable=yes,scrollbars=yes,status=yes");
+          window.open("https://www.arcgis.com/sharing/oauth2/authorize?client_id="+clientID+"&response_type=token&expiration=20160&redirect_uri=http%3A%2F%2Fesri.github.io%2Fesri-leaflet-demographic-layer%2Fcallback.html", "oauth-window", "height=400,width=600,menubar=no,location=yes,resizable=yes,scrollbars=yes,status=yes");
         }
       }
 
@@ -71,8 +71,7 @@
           attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
       }).addTo(map);
 
-      var income = new L.esri.Demographics.DemographicLayer("UsaHealthCareSpending", {
-        token: token,
+      var income = new L.esri.Demographics.DemographicLayer("USAHealthCareSpending", {
         opacity: 0.75
       }).addTo(map);
 
@@ -85,9 +84,7 @@
         });
       });
 
-      var legend = new L.esri.Demographics.Legend("UsaHealthCareSpending", {
-        token: token
-      }).addTo(map);
+      var legend = new L.esri.Demographics.Legend("USAHealthCareSpending").addTo(map);
 
       legend.on('authenticationrequired', function (e) {
         // run our oauth function, when its done we will get a token
