@@ -121,7 +121,13 @@ You can view a full list of all 250+ keys [here](https://github.com/Esri/esri-le
 Make sure you load the layer file for the keys you want to make available for use AFTER you load `esri-leaflet-demographics.js`.
 
 ```html
-%3C!--%20Load%20the%20required%20JS%20and%20CSS%20files%20--%3E%0A%3Clink%20href%3D%22esri-leaflet-legend.css%22%20rel%3D%22stylesheet%22%20%2F%3E%0A%3Cscript%20src%3D%22esri-leaflet-demographics.js%22%3E%3C%2Fscript%3E%0A%0A%3C!--%20Load%20US%20and%20Canadian%20layer%20keys%20--%3E%0A%3Cscript%20src%3D%22usa.js%22%3E%3C%2Fscript%3E%0A%3Cscript%20src%3D%22canada.js%22%3E%3C%2Fscript%3E
+<!-- Load the required JS and CSS files -->
+<link href="esri-leaflet-legend.css" rel="stylesheet" />
+<script src="esri-leaflet-demographics.js"></script>
+
+<!-- Load US and Canadian layer keys -->
+<script src="usa.js"></script>
+<script src="canada.js"></script>
 ``` 
 
 ### Costs
