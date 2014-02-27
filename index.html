@@ -9,7 +9,7 @@
 
     <link rel="stylesheet" href="esri-leaflet-legend.css" />
     <script src="esri-leaflet-demographics.js"></script>
-    <script src="usa.js"></script>
+    <script src="all.js"></script>
 
     <!-- Make the map fill the entire page -->
     <style>
@@ -27,7 +27,8 @@
     <script>
       var clientID = 'FxeCTSwkrA9yqVGS',
           accessToken,
-          callbacks = [];
+          callbacks = [],
+          key = (window.location.hash) ? window.location.hash.replace('#', ''): 'USAHealthCareSpending';
 
       // this function will open a window and start the oauth process
       function oauth(callback) {
@@ -64,14 +65,14 @@
         return L.popup().setLatLng(latlng).setContent(content);
       }
 
-      var map = new L.Map("map").setView([41.05035951931887, -75.0146484375], 7);
+      var map = new L.Map("map").setView([0,0], 4);
 
       // add an OpenStreetMap tile layer
       var tiles = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
           attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
       }).addTo(map);
 
-      var income = new L.esri.Demographics.DemographicLayer("USAHealthCareSpending", {
+      var income = new L.esri.Demographics.DemographicLayer(key, {
         opacity: 0.75
       }).addTo(map);
 
@@ -84,7 +85,7 @@
         });
       });
 
-      var legend = new L.esri.Demographics.Legend("USAHealthCareSpending").addTo(map);
+      var legend = new L.esri.Demographics.Legend(key).addTo(map);
 
       legend.on('authenticationrequired', function (e) {
         // run our oauth function, when its done we will get a token
