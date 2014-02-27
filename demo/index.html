@@ -3,12 +3,16 @@
   <head>
     <title>Esri Leaflet Demographic Layers</title>
 
-    <!-- Load Leaflet from their CDN -->
+    <!-- Load Leaflet from the Leaflet CDN -->
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.css" />
     <script src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet-src.js"></script>
 
+
+    <!-- Load Esri Leaflet Demographics -->
     <link rel="stylesheet" href="esri-leaflet-legend.css" />
     <script src="esri-leaflet-demographics.js"></script>
+
+    <!-- Load all the layer info for Esri Leaflet Demographics -->
     <script src="all.js"></script>
 
     <!-- Make the map fill the entire page -->
@@ -23,14 +27,16 @@
 
   </head>
   <body>
+    <a href="https://github.com/Esri/esri-leaflet-demographic-layer"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://github-camo.global.ssl.fastly.net/e7bbb0521b397edbd5fe43e7f760759336b5e05f/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677265656e5f3030373230302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png"></a>
     <div id="map"></div>
-    <script>
-      var clientID = 'FxeCTSwkrA9yqVGS',
-          accessToken,
-          callbacks = [],
-          key = (window.location.hash) ? window.location.hash.replace('#', ''): 'USAHealthCareSpending';
 
-      // this function will open a window and start the oauth process
+    <script>
+      var clientID = 'FxeCTSwkrA9yqVGS';
+      var accessToken;
+      var callbacks = [];
+      var key = (window.location.hash) ? window.location.hash.replace('#', ''): 'USAHealthCareSpending';
+
+      // this function will open a popup window and start the oauth process
       function oauth(callback) {
         if(accessToken){
           callback(accessToken);
@@ -49,6 +55,7 @@
         }
       }
 
+      // a function for looping over all properties and rendering a popup at a given latlng
       function createPopup(latlng, properties){
         var template = "<small>{description}: <strong>{value}</strong></small><br>";
         var content = "";
@@ -72,11 +79,12 @@
           attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
       }).addTo(map);
 
+      // create a new demographic layer
       var layer = new L.esri.Demographics.DemographicLayer(key, {
         opacity: 0.65
       }).addTo(map);
 
-      // the event authenticationrequired will fire when you need to provide a token.
+      // the authenticationrequired event will fire if and when you need to provide a new token
       layer.on('authenticationrequired', function (e) {
         // run our oauth function, when its done we will get a token
         oauth(function(token){
@@ -89,6 +97,7 @@
         map.fitBounds(e.bounds);
       })
 
+      // create a matching legend for our layer
       var legend = new L.esri.Demographics.Legend(key).addTo(map);
 
       legend.on('authenticationrequired', function (e) {
@@ -101,23 +110,27 @@
 
       var outline;
 
+      // when the map is clicked query more demographic info about and the layer nad display it in a popup
       map.on("click", function(e) {
         layer.query(e.latlng, function(response){
           if(outline){
             map.removeLayer(outline);
           }
 
-          outline = new L.GeoJSON(response.features[0], {
-            style: function(feature){
-              return {
-                color: "#fff",
-                weight:  3,
-                opacity: 0.75
+          // if ther was no error
+          if(!response.error){
+            outline = new L.GeoJSON(response.features[0], {
+              style: function(feature){
+                return {
+                  color: "#fff",
+                  weight:  3,
+                  opacity: 0.75
+                }
               }
-            }
-          }).addTo(map);
+            }).addTo(map);
 
-          createPopup(e.latlng, response.features[0].properties).openOn(map);
+            createPopup(e.latlng, response.features[0].properties).openOn(map);
+          }
         });
       });
     </script>

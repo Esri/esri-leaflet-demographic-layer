@@ -188,7 +188,9 @@
     options: {
       token: false,
       detectRetina: false,
-      opacity: 0.5
+      opacity: 0.5,
+      debounce: 150,
+      position: 'front'
     },
     initialize: function (key, options) {
       L.Util.setOptions(this, options);
@@ -205,7 +207,7 @@
     onAdd: function (map) {
       this._map = map;
 
-      this._moveHandler = debounce(this._update, 150, this);
+      this._moveHandler = debounce(this._update, this.options.debounce, this);
 
       map.on('moveend', this._moveHandler, this);
 
@@ -427,6 +429,8 @@
               }, this)
             });
           }
+        } else if (response.error) {
+          callback(response);
         } else {
           callback(featuresToGeoJSON(response));
         }
