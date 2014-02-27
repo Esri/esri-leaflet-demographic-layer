@@ -6,7 +6,7 @@
 
 ## Demo
 
-@TODO
+[http://esri.github.io/esri-leaflet-demographic-layer/](View the demo). You will need to 
 
 ![Demographic Layer](https://raw.github.com/Esri/esri-leaflet-demographic-layer/master/preview.jpg)
 
@@ -15,6 +15,8 @@
 ### L.esri.Demographics.DemographicLayer
 
 ### L.esri.Demographics.Legend
+
+### Authentication
 
 ### Available Layers
 

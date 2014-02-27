@@ -60,7 +60,7 @@ module.exports = function (grunt) {
 
   function writeFiles(items, callback) {
     var countries = processResults(items);
-
+    var all = [];
     async.forEach(Object.keys(countries), function (key, cb) {
       var filename = 'layers/' + countries[key][0].filename + '.js';
 
@@ -71,9 +71,9 @@ module.exports = function (grunt) {
         };
       });
 
-      var content = 'L.esri.Demographics._addKeys(' + JSON.stringify(layers, undefined, 2).replace(/\"/g, '\'') + ');';
+      all = all.concat(layers);
 
-      fs.writeFile(filename, content, function (error, result) {
+      fs.writeFile(filename, 'L.esri.Demographics._addKeys(' + JSON.stringify(layers, undefined, 2).replace(/\"/g, '\'') + ');', function (error, result) {
         if (error) {
           grunt.log.error('Error creating ' + filename + ' ' + error);
         } else {
@@ -82,6 +82,15 @@ module.exports = function (grunt) {
         cb(error, result);
       });
     }, function () {
+
+      fs.writeFile('layers/all.js', 'L.esri.Demographics._addKeys(' + JSON.stringify(all, undefined, 2).replace(/\"/g, '\'') + ');', function (error) {
+        if (error) {
+          grunt.log.error('Error creating all.js' + error);
+        } else {
+          grunt.log.ok('Created all.js with ' + all.length + ' layers');
+        }
+      });
+
       fs.writeFile('layers/README.md', template({countries: countries}), function (error) {
         if (error) {
           grunt.log.error('Error updating layer README.md');

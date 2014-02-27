@@ -8,5 +8,5 @@ To preview layers you will need an ArcGIS Online account. You can sign up for a 
 #### <%= name %>
 
 <% _.forEach(layers, function(layer){ %>
-* `<%= layer.key %>` - [Preview in ArcGIS Online](http://www.arcgis.com/home/webmap/viewer.html?services=<%= layer.id %>) <% }); %>
+* `<%= layer.key %>` - [Preview](http://esri.github.io/esri-leaflet-demographic-layer/#<%= layer.key %>) <% }); %>
 <% }); %>
