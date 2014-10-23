@@ -1,3 +1,5 @@
+**This plugin for Esri Leaflet is depricated. Please do not use it or file issues against it. A new demographics plugin will be coming soon. More details are available in the [Esri Leaflet Roadmap](https://github.com/Esri/esri-leaflet/wiki/Roadmap#updated-esri-leaflet-demographic-plugin---fallwinter-2014)**
+
 # Esri Leaflet Demographic Layers
 
 Esri Leaflet Demographic Layers is a Leaflet plugin that will allow you to render and query demographic maps from ArcGIS Online.
