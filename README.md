@@ -1,6 +1,4 @@
-**This plugin for Esri Leaflet is deprecated. Please do not use it or file issues against it. A new demographics plugin will be coming soon. More details are available in the [Esri Leaflet Roadmap](https://github.com/Esri/esri-leaflet/wiki/Roadmap#updated-esri-leaflet-demographic-plugin---fallwinter-2014)**
-
-# Esri Leaflet Demographic Layers [deprecated]
+# Esri Leaflet Demographic Layers [Deprecated]
 
 Development has stalled temporarily, but we still hope to have an updated Demographic Plugin [someday](https://github.com/Esri/esri-leaflet/wiki/Roadmap#on-the-roadmap)...
 
@@ -20,6 +18,3 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 A copy of the license is available in the repository's [license.txt]( https://raw.github.com/Esri/esri-leaflet-demographic-layer/master/license.txt) file.
-
-[](Esri Tags: ArcGIS Web Mapping Leaflet Demographics deprecated)
-[](Esri Language: JavaScript)
